@@ -10,7 +10,9 @@ JohnSecondDatabase::Application.routes.draw do
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
+  match '/john',    to: 'static_pages#john'
   match '/contact', to: 'static_pages#contact'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

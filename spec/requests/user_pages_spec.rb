@@ -29,9 +29,8 @@ describe "User pages" do
         end
       end
     end
-  end
 
-  describe "delete links" do
+    describe "delete links" do
 
       it { should_not have_link('delete') }
 
