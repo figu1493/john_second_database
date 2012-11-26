@@ -42,24 +42,23 @@ begin
     end
   end
   desc 'Alias for cucumber:ok'
-  task :cucumber => 'cucumber:ok'
+    task :cucumber => 'cucumber:ok'
 
-  task :default => :cucumber
+    task :default => :cucumber
 
-  task :features => :cucumber do
-    STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
+    task :features => :cucumber do
+      STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
+    end
+
+    # In case we don't have ActiveRecord, append a no-op task that we can depend upon.
+    task 'db:test:prepare' do
+    end
+
+    task :stats => 'cucumber:statsetup'
+    rescue LoadError
+    desc 'cucumber rake task not available (cucumber not installed)'
+    task :cucumber do
+      abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
+    end
   end
-
-  # In case we don't have ActiveRecord, append a no-op task that we can depend upon.
-  task 'db:test:prepare' do
-  end
-
-  task :stats => 'cucumber:statsetup'
-rescue LoadError
-  desc 'cucumber rake task not available (cucumber not installed)'
-  task :cucumber do
-    abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
-  end
-end
-
 end
